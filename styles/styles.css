@@ -18,6 +18,16 @@ body {
     z-index: -1;
 }
 
+.molecules-background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    opacity: 0.1;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="10" fill="%2364b3f4"/><circle cx="20" cy="30" r="8" fill="%23c2e59c"/><circle cx="70" cy="70" r="6" fill="%23ff7e5f"/></svg>');
+    background-repeat: repeat;
+}
+
 header {
     padding: 2rem;
     text-align: center;
@@ -32,6 +42,32 @@ h1 {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    position: relative;
+}
+
+.atom-title {
+    position: relative;
+    display: inline-block;
+}
+
+.atom-title::before,
+.atom-title::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid rgba(100, 179, 244, 0.7);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.atom-title::after {
+    width: 60px;
+    height: 60px;
+    border-color: rgba(194, 229, 156, 0.7);
 }
 
 h2 {
@@ -68,6 +104,7 @@ h2::after {
     flex-wrap: wrap;
     justify-content: center;
     gap: 25px;
+    perspective: 1000px;
 }
 
 .member-card {
@@ -81,28 +118,60 @@ h2::after {
     border: 1px solid rgba(255, 255, 255, 0.18);
     display: flex;
     flex-direction: column;
-    transition: transform 0.5s, box-shadow 0.5s;
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.5s;
     position: relative;
     cursor: pointer;
+    transform-style: preserve-3d;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.member-card::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: radial-gradient(circle at 50% 50%, rgba(100, 179, 244, 0.2), transparent 70%);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+}
+
+.member-card:hover::before {
+    opacity: 1;
 }
 
 .member-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-10px) rotateX(5deg) rotateY(-5deg);
     box-shadow: 0 15px 35px rgba(31, 38, 135, 0.3);
 }
 
 .card-image {
     width: 100%;
-    height: 400px;
+    height: 300px;
     overflow: hidden;
     position: relative;
+}
+
+.card-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 70%, rgba(12, 20, 69, 0.8));
+    z-index: 1;
 }
 
 .card-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s;
+    transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .member-card:hover .card-image img {
@@ -126,6 +195,7 @@ h2::after {
     flex-direction: column;
     position: relative;
     z-index: 1;
+    background: rgba(12, 20, 69, 0.9);
 }
 
 .card-content::before {
@@ -145,6 +215,24 @@ h2::after {
     font-weight: 600;
     margin-bottom: 5px;
     color: #fff;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.name::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #64b3f4, #c2e59c);
+    transition: width 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.member-card:hover .name::after {
+    width: 100%;
 }
 
 .position {
@@ -180,6 +268,25 @@ h2::after {
     text-decoration: none;
     font-weight: 500;
     display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+
+.read-more::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s;
+    pointer-events: none;
+}
+
+.read-more:hover::before {
+    opacity: 1;
 }
 
 .read-more:hover {
@@ -196,6 +303,26 @@ h2::after {
     border-radius: 20px;
     box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.18);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #64b3f4, #c2e59c, #ff7e5f, #feb47b);
+    background-size: 300% 100%;
+    animation: gradientMove 4s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .contact-section h2 {
@@ -227,7 +354,7 @@ h2::after {
     background: rgba(255, 255, 255, 0.05);
     color: #fff;
     font-size: 1rem;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s, transform 0.3s;
 }
 
 .form-group input:focus,
@@ -235,6 +362,7 @@ h2::after {
     outline: none;
     border-color: rgba(100, 179, 244, 0.8);
     box-shadow: 0 0 0 2px rgba(100, 179, 244, 0.3);
+    transform: translateY(-2px);
 }
 
 .form-group textarea {
@@ -253,6 +381,18 @@ h2::after {
     cursor: pointer;
     transition: transform 0.3s, opacity 0.3s;
     justify-self: end;
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-btn-bubble {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    transform: scale(0);
+    pointer-events: none;
 }
 
 .submit-btn:hover {
@@ -286,39 +426,59 @@ footer {
 .loader {
     width: 60px;
     height: 60px;
-    border: 5px solid rgba(255,255,255,0.1);
-    border-top: 5px solid #64b3f4;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+    position: relative;
 }
 
-/* Add these styles to your existing CSS file */
+.loader::before, 
+.loader::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 5px solid transparent;
+    border-top-color: #64b3f4;
+    animation: spin 1.5s linear infinite;
+}
+
+.loader::after {
+    border-top-color: #c2e59c;
+    animation-duration: 2.5s;
+    transform: rotate(60deg);
+}
 
 .social-links {
     margin-top: 10px;
     text-align: center;
-  }
+}
   
-  .github-link {
+.github-link {
     display: inline-block;
     margin: 0 5px;
     color: #ffffff;
     text-decoration: none;
     transition: all 0.3s ease;
-  }
+}
   
-  .github-link i {
+.github-link i {
     font-size: 28px;
-  }
+}
   
-  .github-link:hover {
+.github-link:hover {
     color: #6e5494; /* GitHub's purple color */
     transform: scale(1.1);
-  }
+}
 
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+@keyframes moleculeFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
 }
 
 @keyframes fadeIn {
@@ -327,6 +487,7 @@ footer {
 }
 
 .fade-in {
+    opacity: 0;
     animation: fadeIn 0.8s ease-out forwards;
 }
 
@@ -335,3 +496,38 @@ footer {
 .delay-300 { animation-delay: 0.3s; }
 .delay-400 { animation-delay: 0.4s; }
 .delay-500 { animation-delay: 0.5s; }
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    .member-cards {
+        gap: 15px;
+    }
+    
+    .member-card {
+        width: 280px;
+        height: 450px;
+    }
+    
+    .card-image {
+        height: 250px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .member-card {
+        width: 100%;
+        max-width: 320px;
+    }
+    
+    .contact-section {
+        padding: 20px;
+    }
+}
