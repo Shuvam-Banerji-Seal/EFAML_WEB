@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/styles.css">
+    <!-- Add anime.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 </head>
 <body>
     <div class="loading-overlay">
@@ -17,8 +19,10 @@
     
     <div id="particles-js"></div>
     
+    <div class="molecules-background"></div>
+    
     <header class="fade-in">
-        <h1>EFAML Members</h1>
+        <h1>EFAML <span class="atom-title">Members</span></h1>
         <p>Exploring scientific frontiers and pushing the boundaries of knowledge</p>
     </header>
 
@@ -46,7 +50,10 @@
                     <label for="message">Message</label>
                     <textarea id="message" name="message" required></textarea>
                 </div>
-                <button type="submit" class="submit-btn">Send Message</button>
+                <button type="submit" class="submit-btn">
+                    <span>Send Message</span>
+                    <div class="submit-btn-bubble"></div>
+                </button>
             </form>
         </section>
     </main>
@@ -55,15 +62,13 @@
         <p>&copy; 2025 EFAML. All Rights Reserved.</p>
         <div class="social-links">
             <a href="https://github.com/shuvam-banerji-seal" target="_blank" class="github-link">
-              <i class="fa fa-github" aria-hidden="true"></i>
+                <i class="fa fa-github" aria-hidden="true"></i>
             </a>
-          </div>
-   </footer>
+        </div>
+    </footer>
 
     <script src="scripts/particles.js-master/particles.js"></script>
-    <script src=
-    "scripts/particles.js-master/demo/js/app.js">
-</script>
+    <script src="scripts/particles.js-master/demo/js/app.js"></script>
     <script src="scripts/scripts.js"></script>
 </body>
 </html>
