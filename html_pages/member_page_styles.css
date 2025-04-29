@@ -1,0 +1,311 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #0c1445;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.profile-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 80px auto 40px;
+    min-height: calc(100vh - 200px);
+    padding: 0 20px;
+}
+
+.profile-card {
+    width: 320px;
+    height: 420px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    margin-right: 40px;
+    position: sticky;
+    top: 100px;
+    transition: transform 0.3s ease;
+}
+
+@media (max-width: 900px) {
+    .profile-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .profile-card {
+        margin-right: 0;
+        margin-bottom: 30px;
+        position: relative;
+        top: 0;
+    }
+}
+
+.profile-card:hover {
+    transform: translateY(-10px);
+}
+
+.card-image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.profile-card:hover .card-image img {
+    transform: scale(1.1);
+}
+
+.placeholder-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: linear-gradient(45deg, #243949, #517fa4);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 50px;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.position {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 15px;
+}
+
+.research {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.4;
+}
+
+.profile-details {
+    flex: 1;
+}
+
+.profile-section {
+    margin-bottom: 40px;
+    animation: fadeIn 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.profile-section:nth-child(1) { animation-delay: 0.2s; }
+.profile-section:nth-child(2) { animation-delay: 0.4s; }
+.profile-section:nth-child(3) { animation-delay: 0.6s; }
+.profile-section:nth-child(4) { animation-delay: 0.8s; }
+.profile-section:nth-child(5) { animation-delay: 1s; }
+
+.section-title {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    background: linear-gradient(45deg, #64b3f4, #c2e59c);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(45deg, #64b3f4, #c2e59c);
+    border-radius: 2px;
+}
+
+.info-tile {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-tile:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+}
+
+.contact-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    color: #64b3f4;
+}
+
+.publication {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.publication:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.publication-title {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.publication-authors {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 5px;
+}
+
+.publication-journal {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-style: italic;
+}
+
+.publication-doi {
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
+
+.publication-doi a {
+    color: #64b3f4;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.publication-doi a:hover {
+    color: #c2e59c;
+    text-decoration: underline;
+}
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-tag {
+    background: rgba(100, 179, 244, 0.2);
+    border: 1px solid rgba(100, 179, 244, 0.3);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+}
+
+footer {
+    text-align: center;
+    padding: 30px 0;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+}
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0c1445;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease-out;
+}
+
+.loader {
+    width: 60px;
+    height: 60px;
+    border: 5px solid rgba(255,255,255,0.1);
+    border-top: 5px solid #64b3f4;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

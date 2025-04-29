@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nidhi Kumari - Profile</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: #0c1445;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+        
+        .profile-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 80px auto 40px;
+            min-height: calc(100vh - 200px);
+            padding: 0 20px;
+        }
+        
+        .profile-card {
+            width: 320px;
+            height: 420px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            margin-right: 40px;
+            position: sticky;
+            top: 100px;
+            transition: transform 0.3s ease;
+        }
+        
+        @media (max-width: 900px) {
+            .profile-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .profile-card {
+                margin-right: 0;
+                margin-bottom: 30px;
+                position: relative;
+                top: 0;
+            }
+        }
+        
+        .profile-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .card-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .profile-card:hover .card-image img {
+            transform: scale(1.1);
+        }
+        
+        .placeholder-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            background: linear-gradient(45deg, #243949, #517fa4);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 50px;
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .position {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 15px;
+        }
+        
+        .research {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.4;
+        }
+        
+        .profile-details {
+            flex: 1;
+        }
+        
+        .profile-section {
+            margin-bottom: 40px;
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .profile-section:nth-child(1) { animation-delay: 0.2s; }
+        .profile-section:nth-child(2) { animation-delay: 0.4s; }
+        .profile-section:nth-child(3) { animation-delay: 0.6s; }
+        .profile-section:nth-child(4) { animation-delay: 0.8s; }
+        .profile-section:nth-child(5) { animation-delay: 1s; }
+        
+        .section-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #64b3f4, #c2e59c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(45deg, #64b3f4, #c2e59c);
+            border-radius: 2px;
+        }
+        
+        .info-tile {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .info-tile:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            color: #64b3f4;
+        }
+        
+        .publication {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .publication:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .publication-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .publication-authors {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 5px;
+        }
+        
+        .publication-journal {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+        }
+        
+        .publication-doi {
+            font-size: 0.8rem;
+            margin-top: 5px;
+        }
+        
+        .publication-doi a {
+            color: #64b3f4;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .publication-doi a:hover {
+            color: #c2e59c;
+            text-decoration: underline;
+        }
+        
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .skill-tag {
+            background: rgba(100, 179, 244, 0.2);
+            border: 1px solid rgba(100, 179, 244, 0.3);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0c1445;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1s ease-out;
+        }
+        
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(255,255,255,0.1);
+            border-top: 5px solid #64b3f4;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay">
+        <div class="loader"></div>
+    </div>
+    
+    <div id="particles-js"></div>
+    
+    <a href="../index.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    
+    <div class="profile-container">
+        <div class="profile-card" id="profileCard">
+            <!-- Card content will be loaded from JSON -->
+        </div>
+        
+        <div class="profile-details">
+            <div class="profile-section">
+                <h2 class="section-title">About</h2>
+                <div class="info-tile">
+                    <p>Nidhi Kumari is a Senior Research Fellow (SRF) at the Research Laboratory with extensive experience in soft-oxometalates and supramolecular interactions. Her interdisciplinary research combines chemistry and materials science to develop novel solutions for sustainable energy applications.</p>
+                    <p>With a strong focus on phase transition studies and catalytic reactions, she has made significant contributions to the field, particularly in CO2 reduction reactions (CO2RR), nitrogen reduction reactions (N2RR), and hydrogen evolution reactions.</p>
+                </div>
+            </div>
+            
+            <div class="profile-section">
+                <h2 class="section-title">Contact Information</h2>
+                <div class="info-tile">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p>nidhi.kumari@research-lab.edu</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <p>+91 87654 32109</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fab fa-linkedin"></i>
+                            </div>
+                            <div>
+                                <p>linkedin.com/in/nidhi-kumari</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fab fa-researchgate"></i>
+                            </div>
+                            <div>
+                                <p>researchgate.net/nidhi-kumari</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="profile-section">
+                <h2 class="section-title">Research Interests</h2>
+                <div class="info-tile">
+                    <div class="skills-list">
+                        <div class="skill-tag">Soft-Oxometalates</div>
+                        <div class="skill-tag">Supramolecular Interactions</div>
+                        <div class="skill-tag">Phase Transition Studies</div>
+                        <div class="skill-tag">CO2 Reduction Reaction (CO2RR)</div>
+                        <div class="skill-tag">Nitrogen Reduction Reaction (N2RR)</div>
+                        <div class="skill-tag">Hydrogen Evolution Reaction</div>
+                        <div class="skill-tag">Materials Chemistry</div>
+                        <div class="skill-tag">Sustainable Energy</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="profile-section">
+                <h2 class="section-title">Publications</h2>
+                <div class="info-tile">
+                    <div class="publication">
+                        <h3 class="publication-title">Supramolecular Interactions in Soft-Oxometalates: Implications for Phase Transition Studies</h3>
+                        <p class="publication-authors">Kumari N., Roy S., Barman S.</p>
+                        <p class="publication-journal">Chemistry of Materials, 2023, 35(14), 5231-5246</p>
+                        <p class="publication-doi">DOI: <a href="https://doi.org/10.1021/example" target="_blank">10.1021/example</a></p>
+                    </div>
+                    <div class="publication">
+                        <h3 class="publication-title">Efficient Electrocatalytic CO2 Reduction Using Novel Soft-Oxometalate Catalysts</h3>
+                        <p class="publication-authors">Kumari N., Manna K., Roy S.</p>
+                        <p class="publication-journal">ACS Catalysis, 2022, 12(10), 5678-5692</p>
+                        <p class="publication-doi">DOI: <a href="https://doi.org/10.1021/example2" target="_blank">10.1021/example2</a></p>
+                    </div>
+                    <div class="publication">
+                        <h3 class="publication-title">Enhanced N2 Fixation through Supramolecular Assembly of Soft-Oxometalate Clusters</h3>
+                        <p class="publication-authors">Kumari N., Paul S., Roy S.</p>
+                        <p class="publication-journal">Journal of the American Chemical Society, 2021, 143(28), 10495-10507</p>
+                        <p class="publication-doi">DOI: <a href="https://doi.org/10.1021/example3" target="_blank">10.1021/example3</a></p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="profile-section">
+                <h2 class="section-title">Education</h2>
+                <div class="info-tile">
+                    <p><strong>Ph.D. in Materials Chemistry</strong> (Pursuing)<br>
+                    University of Science and Technology, 2019 - Present</p>
+                    <br>
+                    <p><strong>M.Sc. in Chemistry</strong><br>
+                    Indian Institute of Science, 2017 - 2019</p>
+                    <br>
+                    <p><strong>B.Sc. in Chemistry</strong><br>
+                    Delhi University, 2014 - 2017</p>
+                </div>
+            </div>
+            
+            <div class="profile-section">
+                <h2 class="section-title">Awards & Achievements</h2>
+                <div class="info-tile">
+                    <ul style="padding-left: 20px; list-style-type: disc;">
+                        <li>Women in Science Excellence Award, Department of Science and Technology, 2023</li>
+                        <li>Outstanding Research Paper Award, International Conference on Materials Science, 2022</li>
+                        <li>Prime Minister's Research Fellowship, Government of India, 2020</li>
+                        <li>Gold Medal, M.Sc. Chemistry, Indian Institute of Science, 2019</li>
+                    </ul>
+                </div>
+            </div>
+            
+            
+            <div class="profile-section">
+                <h2 class="section-title">Future Research Goals</h2>
+                <div class="info-tile">
+                    <p>Khokan aims to develop innovative catalytic systems that can efficiently perform CO2 reduction reactions at ambient conditions with high selectivity. His future research will focus on:</p>
+                    <br>
+                    <ul style="padding-left: 20px; list-style-type: disc;">
+                        <li>Designing novel electrocatalysts with enhanced efficiency for water splitting</li>
+                        <li>Exploring the potential of metal-air batteries for large-scale energy storage</li>
+                        <li>Investigating sustainable methods for nitrogen fixation using renewable energy sources</li>
+                        <li>Developing practical applications of micro-bubble lithography in energy devices</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 Research Laboratory. All Rights Reserved.</p>
+    </footer>
+
+    <script src="../scripts/particles.js-master/particles.min.js"></script>
+    <script>
+        // Loading animation
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.querySelector('.loading-overlay').style.opacity = '0';
+                setTimeout(() => {
+                    document.querySelector('.loading-overlay').style.display = 'none';
+                }, 1000);
+            }, 800);
+        });
+
+        // Initialize particles.js
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+
+        // Fetch member data and populate profile card
+        fetch('../data/lab_mem.jsonl')
+            .then(response => response.text())
+            .then(data => {
+                // Parse JSONL
+                const members = data.trim().split('\n').map(line => JSON.parse(line));
+                
+                // Find Khokan's data
+                const khokanData = members.find(member => member.name.includes('Nidhi'));
+                
+                if (khokanData) {
+                    // Create profile card content
+                    let imageHtml;
+                    if (khokanData.image) {
+                        imageHtml = `<img src="../${khokanData.image}" alt="${khokanData.name}">`;
+                    } else {
+                        imageHtml = `<div class="placeholder-image"><i class="fas fa-user"></i></div>`;
+                    }
+                    
+                    const cardHtml = `
+                        <div class="card-image">
+                            ${imageHtml}
+                        </div>
+                        <div class="card-content">
+                            <h3 class="name">${khokanData.name}</h3>
+                            <p class="position">${khokanData.position}</p>
+                            ${khokanData.research ? `<p class="research">${khokanData.research}</p>` : ''}
+                        </div>
+                    `;
+                    
+                    document.getElementById('profileCard').innerHTML = cardHtml;
+                }
+            })
+            .catch(error => {
+                console.error('Error loading member data:', error);
+                // Fallback in case of error
+                document.getElementById('profileCard').innerHTML = `
+                    <div class="card-image">
+                        <img src="../assests/profile_pictures/nidhi_kumari.png" alt="Nidhi Kumari">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="name">Khokan Manna</h3>
+                        <p class="position">SRF</p>
+                        <p class="research">Water Splitting; Site Specific Catalysis; Micro-Bubble Lithography; Metal-Air Battery; NRR; CO2RR</p>
+                    </div>
+                `;
+            });
+    </script>
+</body>
+</html>
