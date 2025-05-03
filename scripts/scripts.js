@@ -755,3 +755,75 @@ function generateMemberCards(members) {
         `;
     }).join('');
 }
+
+
+// Add this to your scripts.js file
+
+// Contact section email functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle email buttons click
+    document.querySelectorAll('.email-button').forEach((button, index) => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            let email = '';
+            if (index === 0) {
+                email = 'roy.soumyajit@googlemail.com';
+            } else {
+                email = 's.roy@iiserkol.ac.in';
+            }
+            
+            // Create particles effect
+            createParticles(e);
+            
+            // Open email client
+            setTimeout(() => {
+                window.location.href = `mailto:${email}`;
+            }, 300);
+        });
+    });
+    
+    // Handle the entire email option div click
+    document.querySelectorAll('.email-option').forEach((option, index) => {
+        option.addEventListener('click', (e) => {
+            if (e.target.tagName !== 'BUTTON') {
+                const button = option.querySelector('.email-button');
+                button.click();
+            }
+        });
+    });
+});
+
+// Particle animation function
+function createParticles(e) {
+    const x = e.clientX;
+    const y = e.clientY;
+    
+    for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        document.body.appendChild(particle);
+        
+        const size = Math.random() * 10 + 5;
+        const destinationX = x + (Math.random() - 0.5) * 200;
+        const destinationY = y + (Math.random() - 0.5) * 200;
+        
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${x}px`;
+        particle.style.top = `${y}px`;
+        
+        // Using anime.js for the animation (which is already included in your HTML)
+        anime({
+            targets: particle,
+            left: destinationX,
+            top: destinationY,
+            opacity: [0, 1, 0],
+            scale: [0.2, 1],
+            easing: 'easeOutExpo',
+            duration: Math.random() * 1000 + 500,
+            complete: function() {
+                particle.remove();
+            }
+        });
+    }
+}
